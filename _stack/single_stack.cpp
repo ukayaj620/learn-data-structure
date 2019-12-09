@@ -15,6 +15,7 @@ int main()
 	int pil;
 	do
 	{
+		system("CLS");
 		cout << "SINGLE STACK\n"
 			<< "1. PUSH\n2. POP\n3. PRINT\n4. EXIT\n"
 			<< "Your choice: "; 
