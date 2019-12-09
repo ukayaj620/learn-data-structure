@@ -37,6 +37,10 @@ int main()
 				printStack();
 				break;
 			}
+			case 4: {
+				cout << "BYE!\n";
+				break;
+			}
 			default: {
 				cout << "Wrong input!\n";
 				break;
