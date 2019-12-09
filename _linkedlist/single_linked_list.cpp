@@ -8,6 +8,38 @@ struct Node {
 
 Node *head = NULL, *tail = NULL;
 
+void insertHead(int);
+void insertTail(int);
+void insertBefore(int, int);
+void insertAfter(int, int);
+void printList();
+
+int main()
+{
+	// code to try
+	insertHead(10);
+	printList();
+	
+	insertTail(20);
+	printList();
+	
+	insertHead(30);
+	printList();
+	
+	insertBefore(30,100);
+	printList();
+	
+	insertHead(200);
+	printList();
+	
+	insertTail(80);
+	printList();
+	
+	insertAfter(80,70);
+	printList();
+	return 0;
+}
+
 void insertHead(int x)
 {
 	Node *new_node = (Node*)malloc(sizeof(Node));
@@ -109,30 +141,4 @@ void printList()
 		ptr = ptr->next;
 	}
 	printf("\n");
-}
-
-int main()
-{
-	// code to try
-	insertHead(10);
-	printList();
-	
-	insertTail(20);
-	printList();
-	
-	insertHead(30);
-	printList();
-	
-	insertBefore(30,100);
-	printList();
-	
-	insertHead(200);
-	printList();
-	
-	insertTail(80);
-	printList();
-	
-	insertAfter(80,70);
-	printList();
-	return 0;
 }
