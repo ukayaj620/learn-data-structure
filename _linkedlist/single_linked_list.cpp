@@ -20,6 +20,8 @@ void deleteBefore(int);
 void deleteAfter(int);
 void deleteMid(int);
 
+bool searchList(Node*, int );
+
 void printList();
 
 int main()
@@ -39,6 +41,8 @@ int main()
 	
 	insertHead(200);
 	printList();
+	
+	searchList(head,200) ? printf("Exist!\n") : printf("Not Exist!\n");
 	
 	insertTail(80);
 	printList();
@@ -60,6 +64,9 @@ int main()
 	
 	deleteMid(5);
 	printList();
+	
+	searchList(head,80) ? printf("Exist!\n") : printf("Not Exist!\n");
+	
 	return 0;
 }
 
@@ -341,6 +348,21 @@ void deleteMid(int pos)
 			free(ptr);
 		}
 	}
+}
+
+bool searchList(Node *head, int find)
+{
+	if (head == NULL)
+	{
+		return false;
+	}
+	
+	if (head->data == find)
+	{
+		return true;
+	}
+	
+	return searchList(head->next, find);
 }
 
 void printList()
