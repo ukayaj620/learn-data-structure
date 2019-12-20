@@ -55,7 +55,7 @@ int main()
 	insertHead(123);
 	printList();
 	
-	int index = searchList(head, 46, 1); 
+	int index = searchList(head, 123, 1); 
 	(index != -1) ? printf("Exist at index %d!\n", index) : printf("Not Exist!\n");
 	
 	insertTail(56);
@@ -306,6 +306,10 @@ int searchList(Node* ptr, int find, int index)
 	if (ptr->data == find)
 	{
 		return index;
+	}
+	else if (ptr == head && index != 1)
+	{
+		return -1;
 	}
 	else
 	{
