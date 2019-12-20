@@ -353,20 +353,20 @@ void deleteMid(int pos)
 	}
 }
 
-int searchList(Node *head, int find, int index)
+int searchList(Node *ptr, int find, int index)
 {
-	if (head == NULL)
+	if (ptr == NULL)
 	{
 		return -1;
 	}
 	
-	else if (head->data == find)
+	else if (ptr->data == find)
 	{
 		return index;
 	}
 	else
 	{
-		return searchList(head->next, find, index + 1);
+		return searchList(ptr->next, find, index + 1);
 	}	
 }
 
