@@ -164,14 +164,34 @@ int getBalance(Node *node)
 	return heightNode(node->left) - heightNode(node->right);
 }
 
-Node* rightRotate(Node *)
+Node* rightRotate(Node *node)
 {
+	Node *an = node->left;
+	Node *ant = an->right;
 	
+	an->right = node;
+	node->left = ant;
+	
+	node->height = max(heightNode(node->left), heightNode(node->right)) + 1;
+	an->height = max(heightNode(node->left), heightNode(node->right)) + 1;
+	
+	cout << "Right Rotation\n";
+	return an;
 }
 
-Node* leftRotate(Node *) 
+Node* leftRotate(Node *node) 
 {
+	Node *an = node->right;
+	Node *ant = an->left;
 	
+	an->left = node;
+	node->right = ant;
+	
+	node->height = max(heightNode(node->left), heightNode(node->right)) + 1;
+	an->height = max(heightNode(node->left), heightNode(node->right)) + 1;
+	
+	cout << "Left Rotation\n";
+	return an;
 }
 
 Node *findPredeccessor(Node *node)
@@ -213,6 +233,28 @@ Node *insertTree(Node *node, int x, Node *parent)
 	{
 		cout << "Data cannot be duplicated!\n";
 		return node;
+	}
+	
+	node->height = max(heightNode(node->left),heightNode(node->right)) + 1;
+	int balance = getBalance(node);
+	
+	if (balance > 1 && x < node->left->data)
+	{
+		return rightRotate(node);
+	}
+	else if (balance < -1 && x > node->right->data)
+	{
+		return leftRotate(node);
+	}
+	else if (balance > 1 && x > node->left->data)
+	{
+		node->left = leftRotate(node->left);
+		return rightRotate(node);
+	}
+	else if (balance < -1 && x < node->right->data)
+	{
+		node->right = rightRotate(node->right);
+		return leftRotate(node);
 	}
 	
 	return node;
@@ -262,6 +304,33 @@ Node *deleteTreeByMerging(Node *node, int x)
 		}
 	}
 	
+	if (node == NULL)
+	{
+		return node;
+	}
+	
+	node->height = max(heightNode(node->left),heightNode(node->right)) + 1;
+	int balance = getBalance(node);
+	
+	if (balance > 1 && getBalance(node->left) >= 0)
+	{
+		return rightRotate(node);
+	}
+	else if (balance < -1 && getBalance(node->right) <= 0)
+	{
+		return leftRotate(node);
+	}
+	else if (balance > 1 && getBalance(node->left) < 0)
+	{
+		node->left = leftRotate(node->left);
+		return rightRotate(node);
+	}
+	else if (balance < -1 && getBalance(node->right) > 0)
+	{
+		node->right = rightRotate(node->right);
+		return leftRotate(node);
+	}
+	
 	return node;
 }
 
@@ -306,6 +375,34 @@ Node *deleteTreeByCopying(Node *node, int x)
 			node->left = deleteTreeByCopying(node->left, temp->data);
 		}
 	}
+	
+	if (node == NULL)
+	{
+		return node;
+	}
+	
+	node->height = max(heightNode(node->left),heightNode(node->right)) + 1;
+	int balance = getBalance(node);
+	
+	if (balance > 1 && getBalance(node->left) >= 0)
+	{
+		return rightRotate(node);
+	}
+	else if (balance < -1 && getBalance(node->right) <= 0)
+	{
+		return leftRotate(node);
+	}
+	else if (balance > 1 && getBalance(node->left) < 0)
+	{
+		node->left = leftRotate(node->left);
+		return rightRotate(node);
+	}
+	else if (balance < -1 && getBalance(node->right) > 0)
+	{
+		node->right = rightRotate(node->right);
+		return leftRotate(node);
+	}
+	
 	
 	return node;
 }
