@@ -25,6 +25,9 @@ Node *deleteTreeByCopying(Node *, int);
 void inOrder(Node *);
 void preOrder(Node *);
 void postOrder(Node *);
+
+int heightTree(Node *);
+void printGivenLevel(Node *, int);
 void levelOrder(Node *);
 
 int main()
@@ -67,6 +70,7 @@ int main()
          		cout << "InOrder: "; inOrder(root); cout << "\n";
             	cout << "PreOrder: "; preOrder(root); cout << "\n";
             	cout << "PostOrder: "; postOrder(root); cout << "\n";
+            	cout << "LevelOrder:\n"; levelOrder(root); cout << "\n";
 				break;
 			}
 			case 5: {
@@ -255,8 +259,55 @@ void postOrder(Node *node)
 	cout << node->data << " ";
 }
 
+int heightTree(Node *node)
+{
+	if (node == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		int lheight = heightTree(node->left);
+		int rheight = heightTree(node->right);
+		
+		if (lheight > rheight)
+		{
+			return (lheight + 1);	
+		} 
+		else
+		{
+			return (rheight + 1);
+		}
+	}
+}
+
+void printGivenLevel(Node *node, int level)
+{
+	if (node == NULL)
+	{
+		cout << "N "; 
+		return;
+	}
+	if (level == 1)
+	{
+		cout << node->data << " ";
+	}
+	else if (level > 1)
+	{
+		printGivenLevel(node->left, level-1);
+		printGivenLevel(node->right, level-1);
+	}
+}
+
 void levelOrder(Node *node)
 {
+	int h = heightTree(node);
 	
+	for(int i=1; i<=h; i++)
+	{
+		cout << "Level-" << i << ": ";
+		printGivenLevel(node, i);
+		cout << "\n";
+	}
 }
 
