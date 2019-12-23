@@ -17,7 +17,14 @@ struct Node
 };
 
 Node *searchNode(Node *, int);
-Node *findPredeccessor(Node *);
+Node *findPredeccessor(Node *); 
+
+int max(int, int);
+int heightNode(Node *);
+int getBalance(Node *);
+
+Node* rightRotate(Node *);
+Node* leftRotate(Node *);
 
 Node *insertTree(Node *, int, Node *);
 Node *deleteTreeByMerging(Node *, int);
@@ -130,6 +137,41 @@ Node *searchNode(Node *node, int x)
 	{
 		return searchNode(node->right, x);
 	}
+}
+
+int max(int a, int b)
+{
+	return (a > b) ? a : b;	
+}
+
+int heightNode(Node *node)
+{
+	if (node == NULL)
+	{
+		return 0;
+	}
+	
+	return (node->height);
+}
+
+int getBalance(Node *node)
+{
+	if (node == NULL)
+	{
+		return 0;
+	}
+	
+	return heightNode(node->left) - heightNode(node->right);
+}
+
+Node* rightRotate(Node *)
+{
+	
+}
+
+Node* leftRotate(Node *) 
+{
+	
 }
 
 Node *findPredeccessor(Node *node)
