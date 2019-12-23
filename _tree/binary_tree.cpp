@@ -16,6 +16,7 @@ struct Node
 	}
 };
 
+Node *searchNode(Node *, int);
 Node *findPredeccessor(Node *);
 
 Node *insertTree(Node *, int, Node *);
@@ -42,7 +43,8 @@ int main()
 			<< "1. Insert Data\n"
 			<< "2. Delete Data by Merging\n"
 			<< "3. Delete Data by Copying\n"
-			<< "4. Display Tree\n5. Exit\nYour Choice: ";
+			<< "4. Search Node\n"
+			<< "5. Display Tree\n6. Exit\nYour Choice: ";
 		cin >> pil;
 		
 		switch(pil)
@@ -66,6 +68,30 @@ int main()
 				break;
 			}
 			case 4: {
+				int x;
+				cout << "Searched Data?: "; cin >> x;
+				Node *node = searchNode(root, x);
+				
+				if (node == NULL)	
+				{
+					cout << "The data that you want to search isn't existed!\n";
+				}
+				else
+				{
+					if (node == root)
+					{
+						cout << node->data << " exist and it's root!\n";
+					}
+					else
+					{
+						cout << node->data << " exist!\n"
+							<< "Parent: " << node->parent->data << "\n";
+					}
+				}
+					
+				break;
+			}
+			case 5: {
 				cout << "BINARY DATA:\n\n";
          		cout << "InOrder: "; inOrder(root); cout << "\n";
             	cout << "PreOrder: "; preOrder(root); cout << "\n";
@@ -73,7 +99,7 @@ int main()
             	cout << "LevelOrder:\n"; levelOrder(root); cout << "\n";
 				break;
 			}
-			case 5: {
+			case 6: {
 				cout << "BYE!\n";
 				break;
 			}
@@ -85,9 +111,25 @@ int main()
 		
 		system("PAUSE");
 		
-	} while(pil != 5);
+	} while(pil != 6);
 	
 	return 0;
+}
+
+Node *searchNode(Node *node, int x)
+{
+	if (node == NULL || node->data == x)
+	{
+		return node;
+	}
+	else if (x < node->data)
+	{
+		return searchNode(node->left, x);
+	}
+	else if (x > node->data)
+	{
+		return searchNode(node->right, x);
+	}
 }
 
 Node *findPredeccessor(Node *node)
