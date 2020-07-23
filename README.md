@@ -1,8 +1,9 @@
-# Data-Structure
+# Data Structure
 Data Structure in C/C++ to teach my mentee.
 
 Clone it as you like it.
 
+```
 Copyright 2019 Jayaku Briliantio
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,3 +17,4 @@ Copyright 2019 Jayaku Briliantio
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+```
