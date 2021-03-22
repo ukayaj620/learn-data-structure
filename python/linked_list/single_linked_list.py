@@ -4,6 +4,10 @@ class Node:
     self.data = data
     self.next = None
 
+  def __repr__(self):
+    return f'Node({self.data})'
+
+
 class SinglyLinkedList:
 
   def __init__(self):
@@ -78,7 +82,7 @@ class SinglyLinkedList:
       print("Length: {}".format(self.length()))
       print("Data:", end=" ")
       while node:
-        print(node.data, end=" -> " if node.next is not None else "\n")
+        print(repr(node), end=" -> " if node.next is not None else "\n")
         node = node.next
 
 
